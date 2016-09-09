@@ -1,0 +1,252 @@
+
+
+html {
+    background: #000;
+}
+.main {
+    width: 990px;
+    margin: 0 auto;
+
+}
+textarea {
+    resize: none;
+}
+
+header {
+    height: 60px;
+    width: 100%;
+    margin-bottom: 50px;
+    background: black;
+    border-bottom: 3px solid #0a0a0a;
+}
+header .container {
+    position: relative;
+    text-align: center;
+    line-height: 60px;
+}
+
+header .container div {
+    display: inline-block;
+    cursor: pointer;
+    line-height: 1;
+    vertical-align: middle;
+}
+header .container span {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: white;
+    font-family: sans-serif;
+    line-height: 1;
+}
+header .container div:hover svg {
+    fill: rgba(255,255,255,.9);
+}
+
+
+
+
+
+
+
+
+.contentWrapper {
+    overflow: hidden;
+}
+.contentWrapper .videoContent {
+    float: left;
+    width: 640px;
+}
+.contentWrapper .videoContent .playerWrapper {
+    position: relative;
+}
+.contentWrapper .videoContent .playerWrapper .infoWrapper {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 150;
+    overflow: hidden;
+}
+.contentWrapper .videoContent .playerWrapper .infoWrapper #info {
+    display: inline-block;
+    padding: 0 10px;
+    max-width: 570px;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,.5);
+    color: #FFF;
+    font: 24px/28px sans-serif ;
+    border-radius: 6px;
+    /*word-break: break-all;*/
+    word-wrap: break-word;
+}
+.contentWrapper .subContent {
+    float: right;
+    width: 350px;
+    max-height: 510px;
+    overflow-y: auto;
+    text-align: left;
+}
+.contentWrapper .subContent .inputText {
+
+}
+.contentWrapper .subContent .inputText textarea {
+    width: 80%;
+    height: 60px;
+    box-sizing: border-box;
+}
+.contentWrapper .subContent .inputText input[type='button'] {
+    float: right;
+    width: 20%;
+    height: 60px;
+    box-sizing: border-box;
+}
+.contentWrapper .subContent .outputSub {
+    text-align: center;
+
+}
+.contentWrapper .subContent .outputSub .onceOutputSub {
+    height: 50px;
+    margin:  0 0 7px 0;
+}
+.contentWrapper .subContent .outputSub .onceOutputSub textarea {
+    min-height: 50px;
+    width: 80%;
+    padding: 0 0 0 11px;
+    box-sizing: border-box;
+}
+.contentWrapper .subContent .outputSub .onceOutputSub textarea:focus {
+    background: #fdd7d7;
+}
+.contentWrapper .subContent .outputSub .onceOutputSub input {
+    vertical-align: top;
+    height: 50px;
+    /*box-sizing: content-box;*/
+}
+.contentWrapper .subContent .outputSub .onceOutputSub:first-child {
+    display: none;
+}
+.contentWrapper .videoContent #timeZoneWrapper {
+    width: 640px;
+    overflow-x: scroll;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-y: hidden ;
+    background-color: white;
+}
+.contentWrper .videoContent #timeZoneWrapperap::-webkit-scrollbar-track-piece {
+    color: red;
+}
+.contentWrapper .videoContent #timeZone {
+    position: relative;
+    /*width: 6400px;*/
+    height: 100px;
+    background: rgba(0,0,0,.1);
+}
+.contentWrapper .videoContent #timeZone #pointer {
+    position: absolute;
+    left:0;
+    height: 100%;
+    width: 2px;
+    background: red;
+    z-index: 100;
+}
+.contentWrapper .videoContent #timeZone #pointer .drupper {
+    position: absolute;
+    left: -9px;
+    bottom: -10px;
+    width: 20px;
+    height: 20px;
+    background: inherit;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    cursor: pointer;
+
+
+}
+.contentWrapper .videoContent #timeZone .sub {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    height: 60%;
+    border: 1px solid #afabab;
+    box-sizing: border-box;
+    /*z-index: -1;*/
+    overflow: hidden;
+
+}
+.contentWrapper .videoContent #timeZone .sub .innerSubResize {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 10px;
+    background: #c3c3c3;;
+    z-index: 10;
+
+}
+
+.contentWrapper .videoContent #timeZone .sub .innerSubResize:hover {
+    cursor: e-resize;
+}
+.contentWrapper .videoContent #timeZone .sub .innerSubText {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: calc(100% - 10px);
+    box-sizing: border-box;
+    background: #e9e7e7  ;
+    overflow: hidden;
+    font-family: sans-serif;
+
+}
+.contentWrapper .videoContent #timeZone .sub .innerSubText:hover {
+    cursor: move ;
+}
+/*.newSub {
+    height: 20px;
+    width: 250px;
+}*/
+
+
+
+#canvas {
+    position: absolute;
+    left: 0;
+    top:0;
+    /* width: 100%;
+     height: 100%;*/
+}
+
+
+::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+}
+::-webkit-scrollbar-button {
+
+}
+::-webkit-scrollbar-thumb {
+    background: #adadad;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+    background: #ffffff;
+}
+::-webkit-scrollbar-track {
+    background: #0f0f0f;
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
+}

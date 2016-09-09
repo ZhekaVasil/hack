@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Addpage</title>
+</head>
+<body>
+<a href="index.html">HOME</a>
+    <form name="addform" enctype="multipart/form-data" method="post" action="subeditor.php">
+        <label>URL VID: <input type="text" name="idvid" id="idvid" required></label>
+        <label>AUD: <input type="file" name="idaud" id="idaud" ></label>
+        <input type="submit" id="bt" value="SEND">
+    </form>
+<script>
+   /*var bt = document.getElementById('bt');
+    bt.addEventListener('click', sendData);
+    function sendData() {
+        var idvid = document.getElementById('idvid');
+        var idaud = document.getElementById('idaud');
+        var video_id = idvid.value.split('v=')[1];
+        var ampersandPosition = video_id.indexOf('&');
+        video_id = video_id.slice(0, ampersandPosition);
+        var data = new FormData();
+        data.append('idvid', video_id);
+        var request = new XMLHttpRequest();
+        request.addEventListener('load', show);
+        request.open('POST', 'createPreview.php', true);
+        request.send(data);
+
+    }
+   function show(e) {
+       var data = e.target;
+       if (data.status == 200) {
+           document.body.innerHTML = data.responseText;
+       }
+   }
+*/
+</script>
+</body>
+</html>
