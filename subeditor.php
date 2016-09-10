@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
         header .container .addNewContent {
             display: none!important;
         }
@@ -48,6 +52,41 @@
             background: url("img/playBtn.png") no-repeat;
             background-size: cover;
         }
+        .bt_wrapper {
+            display: none;
+            text-align: center;
+        }
+        .tr_button {
+            display: inline-block;
+        }
+        audio {
+            display: none;
+        }
+        progress {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            border-radius: 2px;
+        }
+        progress[value] {
+            /* Reset the default appearance */
+            -webkit-appearance: none;
+            appearance: none;
+
+            width: 100%;
+            height: 2px;
+        }
+        progress[value]::-webkit-progress-bar {
+            background-color: #eee;
+            border-radius: 2px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+        }
+        progress[value]::-webkit-progress-value {
+            background: red;
+        }
+        #original_bt {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -68,6 +107,7 @@ if(isset($_POST['idvid']))
         echo "<div class='popup'>К видео уже добавлены субтитры<br><a href='http://port/one/watch.php?idvid=".$id."'><span class='playBtn'></span></a></div>";
         exit();
     }
+
 
 }
 ?>
@@ -105,77 +145,36 @@ if(isset($_POST['idvid']))
             </div>
         </div>
     </div>
-
 </div>
+    <input type="button" value="Готово" id="btn">
 <!--<input type="button" value="Send Subtitles" id="btnAjax">-->
-<input type="button" value="Готово" id="btn">
     </div>
-<script>
-    var checkAjax = false;
-    var $_FILES = <?php echo json_encode($_FILES); ?>;
-    var $_POST = <?php echo json_encode($_POST); ?>;
-    var audUrl = null;
-
-
-
-    var btn = document.getElementById('btn');
-    btn.addEventListener('click', addToSQL);
-
-    function addToSQL() {
-        this.disabled = true;
-        makeAjax();
-
-
+<?php
+if(is_uploaded_file($_FILES["audio"]["tmp_name"]))
+{
+    /*echo("<p style='color: white'>audio+</p>");*/
+    if(!is_dir('preview/'.$id)){
+        mkdir('preview/'.$id);
     }
-    function actWhenLoad() {
-        window.location.href = 'watch.php?idvid='+ <?php   $url = $_POST['idvid'];
-            parse_str( parse_url( $url, PHP_URL_QUERY ), $my_array_of_vars );
-            echo "'".$my_array_of_vars['v']."&audurl="."'"?> + audUrl;
-    }
-
-    var newTag = document.createElement('script');
-    try {
-        /*var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-         newTag.setAttribute('src', 'scripts/preview.webAudio.js');*/
-        newTag.setAttribute('src', 'scripts/subeditor.js');
-    } catch (e){
-        newTag.setAttribute('src', 'scripts/subeditor.js');
-    } finally {
-        document.body.appendChild(newTag);
-    }
-
-
-    function makeAjax() {
-        var data = new FormData();
-        data.append('subtitles', JSON.stringify(subtitles));
-        data.append('idvid', video_id);
-        var url = 'sendSubtitles.php';
-        var request = new XMLHttpRequest();
-        request.responseType = 'json';
-        request.addEventListener('load', loadAjax);
-        request.open('POST', url, true);
-        request.send(data);
-        function loadAjax(e) {
-            var data = e.target;
-            if (data.status == 200) {
-                var data = new FormData();
-                data.append('idvid', <?php   $url = $_POST['idvid'];
-                    parse_str(parse_url($url, PHP_URL_QUERY), $my_array_of_vars);
-                    echo "'" . $my_array_of_vars['v'] . "'"?>);
-                data.append('audurl', audUrl);
-                var request = new XMLHttpRequest();
-                /* var xmlupload = request.upload;*/
-                request.addEventListener('load', actWhenLoad);
-                request.open('POST', 'adding.php', true);
-                request.send(data);
-            } else {
-                console.log('checkAjax no check');
-            }
-        }
-    }
-
-
-</script>
+    move_uploaded_file($_FILES["audio"]["tmp_name"], "preview/".$id."/audio.mp3");
+    echo '<audio controls id="audio" preload="metadata">
+</audio>
+<div id="progress_mp3"></div>
+<div id="progress_ogg"></div>
+<div class="bt_wrapper">
+    <div class="tr_button">
+        <input type="button" value="ORIGINAL" id="original_bt" disabled >
+    </div>
+    <div class="tr_button">
+        <input type="button" value="TRANSLATE" id="translate_bt" >
+    </div>
+</div>';
+    require 'audio_true.php';
+} /*else {
+    echo("<p style='color: white'>audio-</p>");
+    require 'audio_false.php';
+}*/
+?>
 
 </body>
 </html>

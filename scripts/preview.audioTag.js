@@ -1,7 +1,5 @@
-console.log('audioTag');
 
-var databox = document.getElementById("databox");
-var button = document.getElementById("button");
+
 var progress_mp3 = document.getElementById('progress_mp3');
 var audio = document.getElementById('audio');
 
@@ -12,8 +10,13 @@ window.addEventListener("load", read);
  audio.play()
  })*/
 function read() {
-    var audioName = $_FILES['idaud']['name'];
-    audUrl_mp3 = 'preview/1/' + audioName;
+    var audioName = 'audio.mp3';
+    var video_id = $_POST['idvid'].split('v=')[1];
+    var ampersandPosition = video_id.indexOf('&');
+    if (ampersandPosition != -1) {
+        video_id = video_id.substring(0, ampersandPosition);
+    }
+    audUrl_mp3 = 'preview/' + video_id + '/audio.mp3';
     var request_mp3;
 
     if (window.XMLHttpRequest) {
@@ -65,12 +68,14 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 
+/*
 var video_id = $_POST['idvid'].split('v=')[1];
 var ampersandPosition = video_id.indexOf('&');
 if (ampersandPosition != -1) {
     video_id = video_id.substring(0, ampersandPosition);
 }
-;
+*/
+
 
 
 var player;
@@ -80,11 +85,11 @@ function onYouTubeIframeAPIReady() {
      var finish = str.substr(indexStr+7,11);*/
     /*console.log(finish);*/
     player = new YT.Player('player', {
-        height: '720',
-        width: '980',
+        height: '390',
+        width: '640',
         videoId: video_id,
         playerVars: {
-            fs: "1",
+            fs: "0",
             /*controls: "0",*/
         },
         events: {
