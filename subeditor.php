@@ -102,9 +102,17 @@ if(isset($_POST['idvid']))
     $res = $mysqli->query("SELECT `#` FROM `vid` WHERE `idvid` LIKE '".$id."'");
     $res->data_seek(0);
     $row =$res->fetch_assoc();
+
     if($row['#'])
     {
-        echo "<div class='popup'>К видео уже добавлены субтитры<br><a href='http://port/one/watch.php?idvid=".$id."'><span class='playBtn'></span></a></div>";
+        $res2 = $mysqli->query("SELECT `audurl` FROM `vid` WHERE `idvid` LIKE '".$id."'");
+        $row2 =$res2->fetch_assoc();
+        if($row2['audurl'] == 'null'){
+            echo "<div class='popup'>К видео уже добавлены субтитры<br><a href='http://hack/watch.php?idvid=".$id.'&audurl=null'."'><span class='playBtn'></span></a></div>";
+        } else {
+            echo "<div class='popup'>К видео уже добавлены субтитры<br><a href='http://hack/watch.php?idvid=".$id.'&audurl=true'."'><span class='playBtn'></span></a></div>";
+        }
+
         exit();
     }
 
@@ -170,10 +178,10 @@ if(is_uploaded_file($_FILES["audio"]["tmp_name"]))
     </div>
 </div>';
     require 'audio_true.php';
-} /*else {
-    echo("<p style='color: white'>audio-</p>");
+} else {
+   /* echo("<p style='color: white'>audio-</p>");*/
     require 'audio_false.php';
-}*/
+}
 ?>
 
 </body>

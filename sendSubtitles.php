@@ -6,6 +6,9 @@ if (isset($_POST['subtitles'])) {
     }
     if (file_exists('subcontent/' . $_POST['idvid'] . '/audio.mp3')) {
         unlink('subcontent/' . $_POST['idvid'] . '/audio.mp3');
+
+    }
+    if(file_exists('subcontent/' . $_POST['idvid'])){
         rmdir('subcontent/' . $_POST['idvid']);
     }
 
